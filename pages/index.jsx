@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import Layout from "../src/layouts";
+import LikeButton from "../src/components/LikeButton";
 
 export default function Home() {
   return (
@@ -25,6 +26,9 @@ export default function Home() {
               <Link href="/HeadersFooters">Headers & Footers</Link>
             </li>
           </ul>
+          <br />
+          <LikeButton actived />
+          <LikeButton />
         </main>
       </Layout>
     </>
