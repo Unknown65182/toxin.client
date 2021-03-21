@@ -11,6 +11,7 @@ export default function Home() {
       </Head>
       <Layout>
         <main>
+          44444
           <ul>
             <li>
               <Link href="/ColorsType">Colors & Type</Link>
