@@ -40,7 +40,6 @@ const ListTextVariants = () => {
   );
   if (isLoading) return <div>loading...</div>;
   if (isError) return <div>failed to load</div>;
-  console.log(textVariants);
   return (
     <List>
       {textVariants &&
@@ -72,7 +71,6 @@ const ColorsType = () => {
     <>
       <Head>
         <title>Toxin | ColorsType</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
         <Wrapper>
