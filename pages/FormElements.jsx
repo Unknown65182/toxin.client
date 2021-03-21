@@ -12,6 +12,7 @@ import {
   RadioButtons,
   ToggleButton,
   LikeButton,
+  RateButton,
   BulletList,
   GroupButtons,
 } from "../src/components";
@@ -60,6 +61,13 @@ const FormElements = () => {
                 <GroupButtons direction="row">
                   <LikeButton actived />
                   <LikeButton />
+                </GroupButtons>
+              </Component>
+              <Component>
+                <Title>Rate Button</Title>
+                <GroupButtons direction="row">
+                  <RateButton rate={4} />
+                  <RateButton rate={5} />
                 </GroupButtons>
               </Component>
             </Column>
