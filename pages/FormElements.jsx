@@ -58,8 +58,8 @@ const FormElements = () => {
               <Component>
                 <Title>Like Button</Title>
                 <GroupButtons direction="row">
-                  <LikeButton actived />
                   <LikeButton />
+                  <LikeButton actived />
                 </GroupButtons>
               </Component>
               <Component>

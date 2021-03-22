@@ -10,6 +10,8 @@ export const Wrapper = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  color: ${(props) =>
+    props.actived ? "var(--purple)" : "var(--dark-shade-25)"};
   cursor: pointer;
 `;
 export const Icon = styled.span`
@@ -20,7 +22,10 @@ export const Icon = styled.span`
   max-width: 20px;
   max-height: 20px;
   overflow: hidden;
-  background: linear-gradient(var(--purple), var(--blue));
+  background-image: ${(props) =>
+    props.actived
+      ? "linear-gradient(var(--purple), var(--blue))"
+      : "linear-gradient(var(--dark-shade-25), var(--dark-shade-25))"};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `;
@@ -28,6 +33,6 @@ export const Count = styled.span`
   flex: 0 0 50%;
   font-size: 10px;
   line-height: 12px;
-  color: var(--purple);
+  /* color: var(--purple); */
   text-align: left;
 `;

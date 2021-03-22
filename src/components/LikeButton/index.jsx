@@ -8,7 +8,7 @@ const LikeButton = ({ actived }) => {
   };
   return (
     <Wrapper actived={actived ?? false} onClick={() => handleLike()}>
-      <Icon className="material-icons">
+      <Icon actived={actived ?? false} className="material-icons">
         {actived ? "favorite" : "favorite_border"}
       </Icon>
       <Count>{count}</Count>
