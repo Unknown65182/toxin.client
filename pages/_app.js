@@ -23,10 +23,14 @@ function Toxin({ Component, pageProps }) {
         <link
           href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
           rel="stylesheet"
+          media="print"
+          onLoad="this.media='all'"
         />
         <link
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet"
+          media="print"
+          onLoad="this.media='all'"
         />
       </Head>
       <Component {...pageProps} />
