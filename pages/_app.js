@@ -21,10 +21,20 @@ function Toxin({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
+          rel="preload"
+          as="style"
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+        />
+        <link
           href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
           rel="stylesheet"
           media="print"
           onLoad="this.media='all'"
+        />
+        <link
+          rel="preload"
+          as="style"
+          href="https://fonts.googleapis.com/icon?family=Material+Icons"
         />
         <link
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
