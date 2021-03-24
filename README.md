@@ -1,4 +1,4 @@
-[![GitHub](https://img.shields.io/github/license/Unknown65182/toxin)](https://github.com/Unknown65182/toxin/blob/master/LICENSE)
+[![GitHub](https://img.shields.io/github/license/Unknown65182/toxin)](https://github.com/Unknown65182/toxin/blob/master/LICENSE)[![Codacy Badge](https://app.codacy.com/project/badge/Grade/bc80e84f970241b9900d1e4b0f6612dd)](https://www.codacy.com/gh/Unknown65182/toxin/dashboard?utm_source=github.com&utm_medium=referral&utm_content=Unknown65182/toxin&utm_campaign=Badge_Grade)
 
 https://toxin.vercel.app/
 

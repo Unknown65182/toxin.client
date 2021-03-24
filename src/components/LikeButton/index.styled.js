@@ -33,6 +33,5 @@ export const Count = styled.span`
   flex: 0 0 50%;
   font-size: 10px;
   line-height: 12px;
-  /* color: var(--purple); */
   text-align: left;
 `;
