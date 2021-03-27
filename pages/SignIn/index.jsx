@@ -2,7 +2,7 @@ import { signIn, signOut, useSession } from "next-auth/client";
 
 import { Card, TextField, Button } from "../../src/components/index";
 import Layout from "../../src/layouts";
-import { Form, Title, NotAccount } from "./index.styled";
+import { Form, Title, NotAccount } from "../../src/styles/SignIn.styled";
 
 const SignIn = () => {
   const [session, loading] = useSession();
