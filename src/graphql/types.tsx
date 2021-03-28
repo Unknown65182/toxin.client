@@ -1,4 +1,7 @@
 import { GraphQLResolveInfo } from "graphql";
+import { gql } from "@apollo/client";
+import * as ApolloReactCommon from "@apollo/client";
+import * as ApolloReactHooks from "@apollo/client";
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K];
@@ -11,6 +14,7 @@ export type RequireFields<T, K extends keyof T> = {
   [X in Exclude<keyof T, K>]?: T[X];
 } &
   { [P in K]-?: NonNullable<T[P]> };
+const defaultOptions = {};
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -204,3 +208,64 @@ export type Resolvers<ContextType = any> = {
  * Use "Resolvers" root object instead. If you wish to get "IResolvers", add "typesPrefix: I" to your config.
  */
 export type IResolvers<ContextType = any> = Resolvers<ContextType>;
+
+export type TodoQueryVariables = Exact<{
+  todoId: Scalars["ID"];
+}>;
+
+export type TodoQuery = {
+  Todo?: Maybe<Pick<TodoMvc, "description" | "completed">>;
+};
+
+export const TodoDocument = gql`
+  query Todo($todoId: ID!) {
+    Todo(todoId: $todoId) {
+      description
+      completed
+    }
+  }
+`;
+
+/**
+ * __useTodoQuery__
+ *
+ * To run a query within a React component, call `useTodoQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTodoQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useTodoQuery({
+ *   variables: {
+ *      todoId: // value for 'todoId'
+ *   },
+ * });
+ */
+export function useTodoQuery(
+  baseOptions: ApolloReactHooks.QueryHookOptions<TodoQuery, TodoQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return ApolloReactHooks.useQuery<TodoQuery, TodoQueryVariables>(
+    TodoDocument,
+    options
+  );
+}
+export function useTodoLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    TodoQuery,
+    TodoQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return ApolloReactHooks.useLazyQuery<TodoQuery, TodoQueryVariables>(
+    TodoDocument,
+    options
+  );
+}
+export type TodoQueryHookResult = ReturnType<typeof useTodoQuery>;
+export type TodoLazyQueryHookResult = ReturnType<typeof useTodoLazyQuery>;
+export type TodoQueryResult = ApolloReactCommon.QueryResult<
+  TodoQuery,
+  TodoQueryVariables
+>;

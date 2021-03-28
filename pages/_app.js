@@ -3,6 +3,18 @@ import "../src/styles/globals.css";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { Provider } from "next-auth/client";
+import {
+  ApolloProvider,
+  ApolloClient,
+  HttpLink,
+  InMemoryCache,
+} from "@apollo/client";
+import fetch from "isomorphic-fetch";
+
+const client = new ApolloClient({
+  link: new HttpLink({ uri: "/api/graphql", fetch: fetch }),
+  cache: new InMemoryCache(),
+});
 
 function Toxin({ Component, pageProps }) {
   const router = useRouter();
@@ -44,9 +56,11 @@ function Toxin({ Component, pageProps }) {
           onLoad="this.media='all'"
         />
       </Head>
-      <Provider session={pageProps.session}>
-        <Component {...pageProps} />
-      </Provider>
+      <ApolloProvider client={client}>
+        <Provider session={pageProps.session}>
+          <Component {...pageProps} />
+        </Provider>
+      </ApolloProvider>
     </>
   );
 }
