@@ -1,25 +1,17 @@
 import "normalize.css";
 import "../src/styles/globals.css";
+
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { Provider } from "next-auth/client";
-import {
-  ApolloProvider,
-  ApolloClient,
-  HttpLink,
-  InMemoryCache,
-} from "@apollo/client";
-import fetch from "isomorphic-fetch";
-
-const client = new ApolloClient({
-  link: new HttpLink({ uri: "/api/graphql", fetch: fetch }),
-  cache: new InMemoryCache(),
-});
+import { ApolloProvider } from "@apollo/client";
+import { useApollo } from "../src/utils/apollo";
 
 function Toxin({ Component, pageProps }) {
+  const apolloClient = useApollo(pageProps.initialApolloState);
   const router = useRouter();
   return (
-    <>
+    <ApolloProvider client={apolloClient}>
       <Head>
         <meta charSet="utf-8" />
         <meta
@@ -56,13 +48,17 @@ function Toxin({ Component, pageProps }) {
           onLoad="this.media='all'"
         />
       </Head>
-      <ApolloProvider client={client}>
-        <Provider session={pageProps.session}>
-          <Component {...pageProps} />
-        </Provider>
-      </ApolloProvider>
-    </>
+      <Provider session={pageProps.session}>
+        <Component {...pageProps} />
+      </Provider>
+    </ApolloProvider>
   );
 }
+
+// export async function getServerSideProps(context) {
+//   return {
+//     props: {}, // will be passed to the page component as props
+//   };
+// }
 
 export default Toxin;

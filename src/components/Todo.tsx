@@ -6,10 +6,11 @@ interface IProps {
 }
 
 const GET_TODO = gql`
-  query Todo($todoId: ID!) {
-    Todo(todoId: $todoId) {
-      description
+  query Todo($id: ID!) {
+    todo(_id: $id) {
+      _id
       completed
+      description
     }
   }
 `;
@@ -17,20 +18,31 @@ const GET_TODO = gql`
 const Todo: React.FC<IProps> = (props) => {
   const { data, loading, error } = useQuery(GET_TODO, {
     variables: {
-      todoId: props.todoId,
+      id: props.todoId,
     },
   });
 
   const [completed, setCompleted] = React.useState(
-    () => data?.Todo?.completed ?? false
+    () => data?.todo?.completed ?? false
   );
 
   const onInputChange = () => {
     setCompleted(!completed);
   };
 
-  if (error) return <p>Error: {error.message}</p>;
-  if (loading) return <p>Loading...</p>;
+  if (error)
+    return (
+      <tr>
+        <td>Error: {error.message}</td>
+      </tr>
+    );
+  if (loading)
+    return (
+      <tr>
+        <td>Loading...</td>
+      </tr>
+    );
+  console.log(data);
 
   return (
     data && (
@@ -42,7 +54,7 @@ const Todo: React.FC<IProps> = (props) => {
             onChange={() => onInputChange()}
           />
         </td>
-        <td>{data.Todo.description}</td>
+        <td>{data.todo.description}</td>
       </tr>
     )
   );

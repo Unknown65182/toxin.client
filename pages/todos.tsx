@@ -1,12 +1,13 @@
 import { gql, useQuery } from "@apollo/client";
 import React from "react";
+import Layout from "../src/layouts";
 import Todo from "../src/components/Todo";
 import { TodoMvc } from "../src/graphql/types";
 
 const GET_TODOS = gql`
   query AllTodos {
-    allTodos {
-      todoId
+    todos {
+      _id
     }
   }
 `;
@@ -16,20 +17,23 @@ const Todos: React.FC = () => {
 
   if (error) return <p>Error: {error.message}</p>;
   if (loading) return <p>Loading...</p>;
+  console.log(data);
 
   return (
-    data &&
-    (data?.allTodos.length > 0 ? (
-      <table>
-        <tbody>
-          {data?.allTodos.map((todo: TodoMvc) => (
-            <Todo key={todo.todoId} todoId={todo.todoId} />
-          ))}
-        </tbody>
-      </table>
-    ) : (
-      <div>No Todos</div>
-    ))
+    <Layout>
+      {data &&
+        (data?.todos.length > 0 ? (
+          <table>
+            <tbody>
+              {data?.todos.map((todo: any) => (
+                <Todo key={todo._id} todoId={todo._id} />
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <div>No Todos</div>
+        ))}
+    </Layout>
   );
 };
 

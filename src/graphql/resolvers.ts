@@ -15,9 +15,17 @@ const store: TodoMvc[] = [
 
 const resolvers: Resolvers = {
   Query: {
-    allTodos: () => store,
-    Todo: (_: any, { todoId }) =>
-      store.find((d) => d.todoId === todoId),
+    allTodos: (_parent, _args, _context, _info) => {
+      return _context.db
+        .collection("todos")
+        .findOne()
+        .then((data) => {
+          console.log(data);
+
+          return data;
+        });
+    },
+    Todo: (_: any, { todoId }) => store.find((d) => d.todoId === todoId),
   },
 };
 

@@ -10,10 +10,10 @@ module.exports = withBundleAnalyzer({
         "process.env.BUILD_ID": JSON.stringify(buildId),
       })
     );
-    config.module.rules.push({
-      test: /\.graphql?$/,
-      loader: "webpack-graphql-loader",
-    });
+    // config.module.rules.push({
+    //   test: /\.graphql?$/,
+    //   loader: "webpack-graphql-loader",
+    // });
     if (!isServer) {
       config.node = {
         fs: "empty",
